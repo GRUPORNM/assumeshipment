@@ -1,0 +1,106 @@
+<mvc:View controllerName="assumeshipment.controller.Detail"
+    xmlns="sap.uxap"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:grid="sap.ui.layout"
+    xmlns:main="sap.ui.webc.main"
+    xmlns:commons="sap.suite.ui.commons">
+
+    <ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="false" headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false">
+        <headerTitle>
+            <ObjectPageDynamicHeaderTitle>
+                <expandedHeading>
+                    <m:HBox>
+                        <m:Title text="{nrordemcliente}" wrapping="true"/>
+                    </m:HBox>
+                </expandedHeading>
+                <snappedHeading>
+                    <m:HBox>
+                        <m:Title text="{nrordemcliente}" wrapping="true"/>
+                    </m:HBox>
+                </snappedHeading>
+                <actions>
+                    <m:Button type="Emphasized" text="{i18n>getload}" visible="{appView>/assumeShipmentBtn}" press="handleAssumeShipment"/>
+                    <m:OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press="handleCloseShipmentDetailPressed" visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
+                </actions>
+            </ObjectPageDynamicHeaderTitle>
+        </headerTitle>
+        <sections>
+            <ObjectPageSection titleUppercase="false" title="{i18n>load}">
+                <subSections>
+                    <ObjectPageSubSection titleUppercase="false">
+                        <blocks>
+                            <m:Table id="ShipsLoads" width="100%" class="sapFDynamicPageAlignContent" items="{to_ShipsLoads}" busyIndicatorDelay="{appView>/delay}" selectionChange="onSelectionChange">
+                                <m:headerToolbar>
+                                    <m:OverflowToolbar>
+                                    </m:OverflowToolbar>
+                                </m:headerToolbar>
+                                <m:columns>
+                                    <m:Column>
+                                        <m:Text text="{i18n>codcompartimento}" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="{i18n>commercial_prod}" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="{i18n>product_quantity}" />
+                                    </m:Column>
+                                </m:columns>
+                                <m:items>
+                                    <m:ColumnListItem>
+                                        <m:cells>
+                                            <m:ObjectIdentifier text="{path : 'codcompartimento', formatter: '.formatter.codcompartimento'}" />
+                                            <m:ObjectIdentifier text="{maktx}" />
+                                            <m:ObjectNumber number="{
+                                                    parts:[{path:'quantprodcomercial'},{path:'unidademedida'}],
+                                                    type: 'sap.ui.model.type.Currency',
+                                                        formatOptions: {showMeasure: false}
+                                                    }" unit="{unidademedida}" />
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+            <ObjectPageSection titleUppercase="false" title="{i18n>destination}">
+                <subSections>
+                    <ObjectPageSubSection titleUppercase="false">
+                        <blocks>
+                            <m:Table id="ShipsDestination" width="100%" class="sapFDynamicPageAlignContent" items="{to_ShipsDestination}" busyIndicatorDelay="{appView>/delay}" selectionChange="onSelectionChange">
+                                <m:columns>
+                                    <m:Column>
+                                        <m:Text text="{i18n>codcompartimento}" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="{i18n>name}" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="{i18n>location}" />
+                                    </m:Column>
+                                    <m:Column>
+                                        <m:Text text="{i18n>cpostal}" />
+                                    </m:Column>
+                                </m:columns>
+                                <m:items>
+                                    <m:ColumnListItem>
+                                        <m:cells>
+                                            <m:ObjectIdentifier text="{path : 'codcompartimento', formatter: '.formatter.codcompartimento'}" />
+                                            <m:ObjectIdentifier text="{nome}" />
+                                            <m:ObjectIdentifier text="{localidade}" />
+                                            <m:ObjectIdentifier text="{cpostal}" />
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+        </sections>
+    </ObjectPageLayout>
+</mvc:View>

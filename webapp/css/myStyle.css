@@ -1,0 +1,191 @@
+/* #container-registerdriver---Launchpad--PageLaunchpad-cont{
+    padding: 5%;
+} */
+
+#container-assumeshipment---Launchpad--_IDGenDynamicPageTitle1 {
+    background-color: #354A5F;
+    background-image: url("../img/navbar.png");
+}
+
+.sapMGT {
+    border-radius: 5px !important;
+}
+
+#container-assumeshipment---start--_IDGenFlexBox1 {
+    background-size: cover;
+    -webkit-background-size: cover;
+    background-attachment: scroll;
+    background-image: url("../img/background.png");
+}
+
+.sapMMessageBox {
+    background-color: white !important;
+}
+
+.sapFDynamicPageContent {
+    padding: initial !important;
+}
+
+.sapFDynamicPageContent,
+.sapFDynamicPageContentFitContainer {
+    padding: initial !important;
+}
+
+.sapFDynamicPage-Std-Desktop-XL .sapFDynamicPageContent,
+.sapFDynamicPage-Std-Desktop-XL .sapFDynamicPageContentFitContainer {
+    padding: initial !important;
+}
+
+.sapUiVltCell .sapuiVltCell {
+    height: 95.5% !important;
+}
+
+.loginLogo {
+    margin: 0.75rem 1rem !important;
+}
+
+.avatarButton {
+    border-radius: 50%;
+    background-color: #286eb4;
+    /* font-size: 1.125rem; */
+    color: white;
+    width: 2.2rem;
+    height: 2.2rem;
+    padding: 0px;
+    border: 0px;
+    /* margin-top: 15px !important; */
+}
+
+.searchFieldNav{
+    padding-top: 0.35em !important;
+}
+
+.notificationButton {
+    background-color: transparent;
+    font-size: 1.125rem;
+    color: white;
+    width: 2.2rem;
+    height: 2.2rem;
+    padding: 0px;
+    border: 0px;
+    position: relative;
+    /* margin-top: 15px !important; */
+}
+
+.notificationButton:hover {
+    background-color: #142B37;
+    /* margin-top: 15px !important; */
+}
+
+
+.notificationButton span {
+    font-size: 16px !important;
+}
+
+.notifWithRed .sapMBtnContent {
+    position: absolute;
+    bottom: -1px;
+    right: 1px;
+    width: 15px;
+    height: 15px;
+    background-color: #F53232;
+    color: white;
+    /* color: red !important; */
+    border-radius: 50%;
+    font-size: auto;  /* set the font-size to adjust automatically */
+    line-height: 15px; /* adjusted line-height to match the height */
+    text-align: center;
+    z-index: 1;
+    font-size: 0.7vw !important;
+    font-weight: bold !important;
+}
+
+.btNavBack {
+    padding-top: 10px !important;
+    /* color: white !important; */
+    padding-right: 10px !important;
+}
+
+.btNavBack span:hover {
+    background-color: transparent !important;
+    /* color: white !important; */
+}
+
+.btNavBack span:active {
+    background-color: transparent !important;
+    /* color: white !important; */
+}
+
+.btNavBack span span{
+    color: white !important;
+    font-size: 1.5rem !important;
+}
+
+ /* .sapUshellShellHeadItmCntnt {
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+    color:white !important;
+    border-radius: 0.25rem;
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    font-size: 1.5rem !important;
+    vertical-align: top;
+} */
+
+.sapUiSizeCompact .sapFDynamicPageTitle .sapMTB {
+    height: 3rem !important;
+} 
+
+.customPanelStyle {
+    color: white;
+    /* background-color: red !important; */
+    opacity: 1;
+    /* animation: fadeInOut 5s ease-in-out; */
+}
+
+.customPanelStyle .sapMPanelContent {
+    border-bottom: none !important;
+    padding: 10px !important;
+    /* background-color: #29313A !important; */
+    width: 300px !important;
+    /* height: auto !important; */
+    margin-bottom: 10px !important;
+}
+
+
+.closeButtonStyle {
+    margin-right: -20px !important;
+    margin-top: -12px !important;
+}
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0;
+    }
+    10%, 90% {
+        opacity: 1;
+    }
+}
+
+#container-assumeshipment---list--VALIDATE_BT-inner{
+    width: 288px !important;
+    height: 60px !important;
+    font-size: 23px !important;
+    border-radius: 0.25rem !important;
+    cursor: pointer !important;
+    padding: 0 0.75rem !important;
+}
+
+#container-assumeshipment---list--VALIDATE_BT-content{
+    align-content: center !important;
+}
+
+#container-assumeshipment---list--platesInfoLabel {
+    margin-top: 15px !important;
+}
+
+#container-assumeshipment---list--platesInfoLabel .sapTntInfoLabelText{
+    padding: 10px 10px 10px 10px !important;
+    font-size: 14px !important;
+}

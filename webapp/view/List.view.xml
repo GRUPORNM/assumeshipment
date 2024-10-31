@@ -1,0 +1,159 @@
+<mvc:View height="100%" controllerName="assumeshipment.controller.List"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:tnt="sap.tnt"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+
+    <NavContainer id="wizardNavContainer">
+        <f:DynamicPage id="page" stickySubheaderProvider="CheckInWizard" toggleHeaderOnTitleClick="false" showFooter="{appView>/shipmentAssumed}">
+            <f:title>
+                <f:DynamicPageTitle>
+                    <f:actions>
+                        <Button id="btRefresh" icon="sap-icon://refresh" press="onRefresh"/>
+                    </f:actions>
+                </f:DynamicPageTitle>
+            </f:title>
+            <f:content>
+                <Wizard id="CheckInWizard" class="sapUiResponsivePadding--header sapUiNoContentPadding--content sapUiNoMargin--content" showNextButton="false" renderMode="Page" navigationChange="handleWizardNavigationChange">
+                    <!-- STEP 1 -->
+                    <WizardStep id="BiometricInfo" title="Identificação" validated="false">
+                        <FlexBox alignItems="Center" justifyContent="Center">
+                            <core:Icon id="gif" src="sap-icon://biometric-face" size="14rem" color="white"/>
+                        </FlexBox>
+                        <FlexBox alignItems="Center" justifyContent="Center">
+                            <Text class="sapUiSmallMarginBottom" text="{i18n>faceid}"/>
+                        </FlexBox>
+                    </WizardStep>
+                    <!---->
+
+                    <!-- STEP 2 -->
+                    <WizardStep id="Shipment" validated="{appView>/shipmentStepValidated}" title="Assumir Carga" class="sapUiNoMargin sapUiNoContentPadding">
+                        <IconTabBar class="sapUiNoContentPadding">
+                            <items>
+                                <IconTabFilter icon="sap-icon://shipping-status" key="expeditions" text="Expedições">
+                                    <List id="list" width="auto" noData="{i18n>noDataText}" items="{/xTQAxASSUME_SHIPM_DD}" busyIndicatorDelay="{listView>/delay}" mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" growing="true" growingScrollToLoad="true" selectionChange=".onSelectionChange">
+                                        <headerToolbar>
+                                            <OverflowToolbar>
+                                                <layoutData>
+                                                    <OverflowToolbarLayoutData minWidth="150px" maxWidth="240px" shrinkable="true" priority="NeverOverflow"/>
+                                                </layoutData>
+                                                <ToolbarSpacer/>
+                                            </OverflowToolbar>
+                                        </headerToolbar>
+                                        <items>
+                                            <ObjectListItem type="Navigation" icon="sap-icon://shipping-status" class="listFontSize" press=".onSelectionChange" title="{i18n>delivery} ({nrordemcliente})" number="{cod_instalacao}">
+                                                <firstStatus>
+                                                    <ObjectStatus text="{path : 'driver_no', formatter: '.formatter.driverid'}" state="{path : 'driver_no', formatter: '.formatter.stateLoad'}"/>
+                                                </firstStatus>
+                                                <attributes>
+                                                    <ObjectAttribute text="{i18n>transport_type}: {transport_load}"/>
+                                                    <ObjectAttribute text="{i18n>dataprevistacarregamento}: {path : 'dataprevistacarregamento', formatter: '.formatter.dateTimeFormat'}"/>
+                                                </attributes>
+                                            </ObjectListItem>
+                                        </items>
+                                    </List>
+                                </IconTabFilter>
+
+                                <IconTabFilter icon="sap-icon://receipt" key="receipts" text="Receções">
+                                    <List id="list1" width="auto" noData="{i18n>noDataTextReception}" items="{/xTQAxASSUME_SHIPM_DD}" busyIndicatorDelay="{listView>/delay}" mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" growing="true" growingScrollToLoad="true" selectionChange=".onSelectionChange">
+                                        <headerToolbar>
+                                            <OverflowToolbar>
+                                                <layoutData>
+                                                    <OverflowToolbarLayoutData minWidth="150px" maxWidth="240px" shrinkable="true" priority="NeverOverflow"/>
+                                                </layoutData>
+                                                <ToolbarSpacer/>
+                                            </OverflowToolbar>
+                                        </headerToolbar>
+                                        <items>
+                                            <ObjectListItem type="Navigation" icon="sap-icon://shipping-status" class="listFontSize" press=".onSelectionChange" title="{i18n>delivery} ({nrordemcliente})" number="{cod_instalacao}">
+                                                <firstStatus>
+                                                    <ObjectStatus text="{path : 'driver_no', formatter: '.formatter.driverid'}" state="{path : 'driver_no', formatter: '.formatter.stateLoad'}"/>
+                                                </firstStatus>
+                                                <attributes>
+                                                    <ObjectAttribute text="{i18n>transport_type}: {shtyp_desc}"/>
+                                                    <ObjectAttribute text="{i18n>dataprevistacarregamento}: {path : 'dataprevistacarregamento', formatter: '.formatter.dateTimeFormat'}"/>
+                                                </attributes>
+                                            </ObjectListItem>
+                                        </items>
+                                    </List>
+                                </IconTabFilter>
+                            </items>
+                        </IconTabBar>
+                    </WizardStep>
+                    <!---->
+
+                    <!-- STEP 3 -->
+                    <WizardStep id="PlatesValidation" title="Leitura Veículo" activate="getPlates" validated="false">
+                        <FlexBox alignItems="Center" justifyContent="Center">
+                            <tnt:InfoLabel id="platesInfoLabel" icon="sap-icon://alert" text="Caso ocorra algum tipo de anomalia na leitura das matrículas por favor entre em contacto com o Responsável de Turno através do intercomunicador" renderMode="Narrow" colorScheme="1"/>
+                        </FlexBox>
+                        <VBox alignItems="Center">
+                            <HBox alignItems="Center">
+                                <VBox alignItems="Center">
+                                    <Image id="imagem_trator" width="450px" height="250px" press="handleImagePressed" src="{shipmentModel>/set/imagem}"/>
+                                    <Label id="trator" text="{shipmentModel>/set/trator}"/>
+                                </VBox>
+                                <VBox width="5rem"/>
+                                <VBox alignItems="Center">
+                                    <Image id="imagem_reboque" width="450px" height="250px" press="handleImagePressed" src="{shipmentModel>/set/imagem_reboque}"/>
+                                    <Label id="reboque" text="{shipmentModel>/set/reboque}"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+                        <FlexBox alignItems="Center" justifyContent="Center" class="sapUiSmallMarginTop">
+                            <Button id="VALIDATE_BT" class="customConfirmBt" text="Validar" press="handleSetShipment" visible="false"/>
+                        </FlexBox>
+                    </WizardStep>
+                    <!---->
+
+                    <!-- STEP 4 -->
+                    <WizardStep id="Review" activate="reviewActivate" validated="false" title="Informações Gerais">
+                        <form:SimpleForm id="driverInfoForm" editable="false" layout="ResponsiveGridLayout" title="Dados do utilizador" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1" singleContainerFullSize="false">
+                            <form:content>
+                                <Label text="Nome"/>
+                                <Text text="{shipmentModel>/driver/name}"/>
+
+                                <Label text="Data Nascimento"/>
+                                <Text text="{path : 'shipmentModel>/driver/birth_date', formatter: '.formatter.dateFormat'}"/>
+
+                                <Label text="Nacionalidade"/>
+                                <Text text="{shipmentModel>/driver/nationality}"/>
+
+                                <Label text="Contacto"/>
+                                <Text text="{shipmentModel>/driver/contact}"/>
+
+                                <Label text="Email"/>
+                                <Text text="{shipmentModel>/driver/usr_email}"/>
+                            </form:content>
+                        </form:SimpleForm>
+                        <form:SimpleForm title="Dados do conjunto de transporte" minWidth="1024" editable="false" layout="ResponsiveGridLayout">
+                            <VBox alignItems="Center">
+                                <HBox alignItems="Center">
+                                    <VBox alignItems="Center" class="imageContainer">
+                                        <Image width="450px" height="250px" src="{shipmentModel>/set/imagem}" press="handleImagePressed('1')"/>
+                                        <Text text="{shipmentModel>/set/trator}" textAlign="Center"/>
+                                    </VBox>
+                                    <VBox width="1rem"/>
+                                    <VBox alignItems="Center" class="imageContainer">
+                                        <Image width="450px" height="250px" src="{shipmentModel>/set/imagem_reboque}" press="handleImagePressed('2')"/>
+                                        <Text text="{shipmentModel>/set/reboque}" textAlign="Center"/>
+                                    </VBox>
+                                </HBox>
+                            </VBox>
+                        </form:SimpleForm>
+                    </WizardStep>
+                    <!---->
+                </Wizard>
+            </f:content>
+            <f:footer>
+                <OverflowToolbar>
+                    <ToolbarSpacer/>
+                    <Button id="BtFinish" text="{i18n>finish}" type="Emphasized" visible="{appView>/shipmentAssumed}" press="handleWizardSubmit" />
+                </OverflowToolbar>
+            </f:footer>
+        </f:DynamicPage>
+    </NavContainer>
+</mvc:View>

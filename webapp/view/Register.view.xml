@@ -1,0 +1,45 @@
+<mvc:View height="100%" controllerName="assumeshipment.controller.Register"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:tnt="sap.tnt"
+    xmlns:u="sap.ui.unified"
+    xmlns:layout="sap.ui.layout">
+    <NavContainer id="wizardNavContainer">
+        <f:DynamicPage busy="{appView>/busy}" id="page" stickySubheaderProvider="CheckInWizard" toggleHeaderOnTitleClick="false" class="sapUiNoContentPadding" showFooter="false">
+            <f:title>
+                <f:DynamicPageTitle>
+                    <f:actions>
+                        <Button id="btRefresh" icon="sap-icon://refresh" press="onRefresh('Register')"/>
+                    </f:actions>
+                </f:DynamicPageTitle>
+            </f:title>
+            <f:content>
+                <Wizard id="DriverRegister" class="sapUiResponsivePadding--header sapUiResponsivePadding--content" showNextButton="false" navigationChange="handleNavigationChange" renderMode="Page">
+                    <WizardStep id="ProductInfoStep" title="Leitura do Cartão de Cidadão">
+                        <VBox alignItems="Center">
+                            <HBox alignItems="Center">
+                                <VBox alignItems="Center">
+                                    <Image id="gif" src="img/citizen.gif" width="300px" height="420px" />
+                                    <tnt:InfoLabel id="platesInfoLabel" icon="sap-icon://alert" text="Por favor insira o seu cartão de cidadão no leitor." renderMode="Narrow" colorScheme="1"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+                    </WizardStep>
+
+                    <WizardStep id="Biometric" title="Biometria">
+                        <VBox alignItems="Center">
+                            <HBox alignItems="Center">
+                                <VBox alignItems="Center">
+                                    <Image id="biometricgif" src="img/biometricgif.gif" width="200px" height="200px" />
+                                </VBox>
+                            </HBox>
+                        </VBox>
+                    </WizardStep>
+                </Wizard>
+            </f:content>
+        </f:DynamicPage>
+    </NavContainer>
+</mvc:View>

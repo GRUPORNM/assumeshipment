@@ -1,0 +1,166 @@
+{
+    "_version": "1.49.0",
+    "sap.app": {
+        "id": "assumeshipment",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:listdetail",
+            "version": "1.10.4",
+            "toolsId": "990c9f42-481f-4c3c-a1d7-15fc780b12ed"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/tqa/ASSUME_SHIP_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.120.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "assumeshipment.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css?v=1.7"
+                },
+                {
+                    "uri": "css/myLibrary.css?v=1.7"
+                },
+                {
+                    "uri": "css/myStyle.css?v=1.7"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.f.routing.Router",
+                "viewType": "XML",
+                "viewPath": "assumeshipment.view",
+                "controlId": "layout",
+                "controlAggregation": "beginColumnPages",
+                "bypassed": {
+                    "target": [
+                        "notFound"
+                    ]
+                },
+                "async": true
+            },
+            "routes": [   
+                {
+                    "pattern": "",
+                    "name": "start",
+                    "target": "start"
+                },
+                {
+                    "pattern": "NewEntry",
+                    "name": "list",
+                    "target": "list"
+                },
+                {
+                    "pattern": "NewDriver",
+                    "name": "register",
+                    "target": "register"
+                },
+                {
+                    "pattern": "xTQAxASSUME_SHIPM_DD/{objectId}",
+                    "name": "object",
+                    "target": [
+                        "list",
+                        "object"
+                    ]
+                },
+                {
+                    "name": "NotFound",
+                    "pattern": "NotFound",
+                    "target": "NotFound"
+                }
+            ],
+            "targets": {
+                "start": {
+                    "viewName": "Start",
+                    "viewId": "start"
+                },
+                "list": {
+                    "viewName": "List",
+                    "viewLevel": 1,
+                    "viewId": "list"
+                },
+                "object": {
+                    "viewName": "Detail",
+                    "viewId": "detail",
+                    "viewLevel": 1,
+                    "controlAggregation": "midColumnPages"
+                },
+                "NotFound": {
+                    "viewName": "NotFound",
+                    "viewType": "XML",
+                    "transition": "show",
+                    "clearControlAggregation": false,
+                    "viewId": "NotFound"
+                },
+                "register": {
+                    "viewName": "Register",
+                    "viewId": "register"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "assumeshipment.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "app"
+        }
+    }
+}

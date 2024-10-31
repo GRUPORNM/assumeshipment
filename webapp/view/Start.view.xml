@@ -1,0 +1,35 @@
+<mvc:View xmlns:core="sap.ui.core" controllerName="assumeshipment.controller.Start"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+
+    <Page id="_IDGenPage1" showHeader="false">
+        <html:header>
+            <html:div class="loginLogo">
+                <html:img src="/sap/bc/ui5_ui5/tqa/launchpad/img/logobranco.png" width="84" style="margin: 0 auto;" />
+            </html:div>
+        </html:header>
+
+        <content>
+            <FlexBox id="_IDGenFlexBox1" alignItems="Center" justifyContent="Center" height="100%" direction="Column">
+
+                <ObjectHeader id="largeTitle" title="Bem-Vindo ao Terminal Logístico de Aveiro" height="80px" width="80px" titleAlignment="Center"/>
+
+                <html:div id="LOGIN_SUBMIT_BLOCK" class="loginButtonRow">
+                    <html:button id="LOGIN_LINK" type="submit" class="loginButton sapUiButtonEmphasized" tabindex="0" title="Logon">
+                        Iniciar
+                    </html:button>
+                </html:div>
+
+                <html:div id="NEW_SUBMIT_BLOCK" class="loginButtonRow">
+                    <html:button id="NEW_LINK" type="submit" class="loginButton sapUiButtonEmphasized" tabindex="0" title="Logon">
+                        Registo Biométrico
+                    </html:button>
+                </html:div>
+            </FlexBox>
+        </content>
+    </Page>
+</mvc:View>
+
